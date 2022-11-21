@@ -1,0 +1,32 @@
+<h1>Listing Albums</h1>
+
+<span><.link href={Routes.album_path(@conn, :new)}>New Album</.link></span>
+
+<table>
+  <thead>
+    <tr>
+      <th>Artist</th>
+      <th>Summary</th>
+      <th>Title</th>
+      <th>Year</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for album <- @albums do %>
+    <tr>
+      <td><%= album.artist %></td>
+      <td><%= album.summary %></td>
+      <td><%= album.title %></td>
+      <td><%= album.year %></td>
+
+      <td>
+        <span><.link href={Routes.album_path(@conn, :show, album)}>Show</.link></span>
+        <span><.link href={Routes.album_path(@conn, :edit, album)}>Edit</.link></span>
+        <span><.link href={Routes.album_path(@conn, :delete, album)} method={:delete} data-confirm="Are you sure?">Delete</.link></span>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
